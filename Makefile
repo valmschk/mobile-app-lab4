@@ -4,7 +4,7 @@ LDFLAGS = -lgtest -lgtest_main -pthread
 
 check:
 	@mkdir -p bin
-	\ \ src/logic.cpp tests/test_main.cpp \ -o bin/tests
+	$(CC) $(CFLAGS) src/logic.cpp tests/test_main.cpp $(LDFLAGS) -o bin/tests
 	./bin/tests
 
 clean:
