@@ -1,0 +1,19 @@
+﻿name: C++ CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libgtest-dev lcov cmake
+        cd /usr/src/gtest && sudo cmake . && sudo make && sudo cp lib/*.a /usr/lib
+    - name: Run Tests
+      run: make check
+    - name: Coverage Report
+      run: |
+        lcov --capture --directory . --output-file coverage.info
+        lcov --remove coverage.info '/usr/*' --output-file coverage.info
+        lcov --list coverage.info
