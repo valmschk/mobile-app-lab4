@@ -3,9 +3,7 @@
 
 #include <string>
 #include <sqlite3.h>
-
-int add(int a, int b);
-int multiply(int a, int b);
+#include <vector>
 
 struct UserInfo {
     std::string username;
@@ -14,5 +12,9 @@ struct UserInfo {
 };
 
 UserInfo loginUser(sqlite3* db, std::string user, std::string pass);
+
+void printBestHorse(sqlite3* db); 
+void distributePrizes(sqlite3* db, int raceId, double totalFund); 
+bool checkHorseExists(sqlite3* db, int horseId); 
 
 #endif
